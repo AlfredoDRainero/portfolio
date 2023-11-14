@@ -19,11 +19,8 @@ import {
   PivotControls,
 } from "@react-three/drei";
 import { useControls } from "leva";
-import * as THREE from 'three';
+import * as THREE from "three";
 //<PivotControls anchor={[-1.1, -1.1, -1.1]} scale={.75} lineWidth={3.5}>
-
-
-
 
 export const BoxR = () => {
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
@@ -42,47 +39,56 @@ export const BoxR = () => {
 
     handleResize();
 
-    window.addEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
     return () => {
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
   return (
-  <Canvas
-    shadows
-    camera={{ position: [-3, 0.5, 3] }}
-    invalidateFrameloop={false}
-    gl={{ preserveDrawingBuffer: true }}
-    onCreated={({ gl }) => {
-      gl.shadowMap.enabled = true;
-      gl.shadowMap.type = THREE.PCFSoftShadowMap;
-    }}
-  >
-    <mesh castShadow receiveShadow>
-      <boxGeometry args={[2, 2, 2]} />
-      <Edges />
-      <Side rotation={[0, 0, 0]} bg="orange" index={0}>
-        <torusGeometry args={[0.65, 0.3, 64]} />
-      </Side>
-      <Side rotation={[0, Math.PI, 0]} bg="lightblue" index={1}>
-        <torusKnotGeometry args={[0.55, 0.2, 128, 32]} />
-      </Side>
-      <Side rotation={[0, Math.PI / 2, Math.PI / 2]} bg="lightgreen" index={2}>
-        <boxGeometry args={[1.15, 1.15, 1.15]} />
-      </Side>
-      <Side rotation={[0, Math.PI / 2, -Math.PI / 2]} bg="aquamarine" index={3}>
-        <octahedronGeometry />
-      </Side>
-      <Side rotation={[0, -Math.PI / 2, 0]} bg="indianred" index={4}>
-        <icosahedronGeometry />
-      </Side>
-      <Side rotation={[0, Math.PI / 2, 0]} bg="hotpink" index={5}>
-        <dodecahedronGeometry />
-      </Side>
-    </mesh>
+    <Canvas
+      shadows
+      camera={{ position: [-3, 0.5, 3] }}
+      invalidateFrameloop={false}
+      gl={{ preserveDrawingBuffer: true }}
+      onCreated={({ gl }) => {
+        gl.shadowMap.enabled = true;
+        gl.shadowMap.type = THREE.PCFSoftShadowMap;
+      }}
+    >
+      <mesh castShadow receiveShadow>
+        <boxGeometry args={[2, 2, 2]} />
+        <Edges />
+        <Side rotation={[0, 0, 0]} bg="orange" index={0}>
+          <torusGeometry args={[0.65, 0.3, 64]} />
+        </Side>
+        <Side rotation={[0, Math.PI, 0]} bg="lightblue" index={1}>
+          <torusKnotGeometry args={[0.55, 0.2, 128, 32]} />
+        </Side>
+        <Side
+          rotation={[0, Math.PI / 2, Math.PI / 2]}
+          bg="lightgreen"
+          index={2}
+        >
+          <boxGeometry args={[1.15, 1.15, 1.15]} />
+        </Side>
+        <Side
+          rotation={[0, Math.PI / 2, -Math.PI / 2]}
+          bg="aquamarine"
+          index={3}
+        >
+          <octahedronGeometry />
+        </Side>
+        <Side rotation={[0, -Math.PI / 2, 0]} bg="indianred" index={4}>
+          <icosahedronGeometry />
+        </Side>
+        <Side rotation={[0, Math.PI / 2, 0]} bg="hotpink" index={5}>
+          <dodecahedronGeometry />
+        </Side>
+      </mesh>
 
-    <CameraControls makeDefault />
-  </Canvas>)
+      <CameraControls makeDefault />
+    </Canvas>
+  );
 };
 
 function Side({ rotation = [0, 0, 0], bg = "#f0f0f0", children, index }) {
