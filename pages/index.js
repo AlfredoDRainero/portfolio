@@ -1,5 +1,5 @@
 import Head from "next/head";
-import React, { Suspense, useRef } from "react";
+import React, { Suspense, useRef,useTransition } from "react";
 import { useState, useEffect } from "react";
 import * as THREE from "three";
 import { useThree } from "@react-three/fiber";
@@ -174,16 +174,16 @@ export default function Home() {
             </mesh>
           </Center>
 
-          <Center top position={[1, 0.65, -1]}>
+          <Center top position={[1, 0, -1]}>
             <mesh
               castShadow
-              rotation={[0, Math.PI / 4, 0]}
+              //rotation={[0, Math.PI / 4, 0]}
               ref={ref2}
               onPointerOver={(event) => hover2(true)}
               onPointerOut={(event) => hover2(false)}
             
             >
-              <boxGeometry args={[0.2, 1.9, 1.2]} />
+              <boxGeometry args={[0.7, 0.7, 0.7]} />
               <meshStandardMaterial
                 color={hovered2 ? "red" : "white"}
               
@@ -209,11 +209,11 @@ export default function Home() {
               <meshStandardMaterial color={hovered2 ? "white" : "cyan"} />
             </Text3D>
           </Center>
-
           <Shadows />
           <Grid position={[0, -0.01, 0]} args={gridSize} {...gridConfig} />
+      
         </group>
-        <OrbitControls makeDefault />
+        <OrbitControls   autoRotate autoRotateSpeed={1} enablePan={false} enableZoom={false} minPolarAngle={Math.PI / 2.1} maxPolarAngle={Math.PI / 2.1}  />
       </Canvas>
     </>
   );
@@ -230,6 +230,21 @@ const Shadows = memo(() => (
     <RandomizedLight amount={8} radius={4} position={[5, 5, -10]} />
   </AccumulativeShadows>
 ));
+
+
+function Sphere() {
+  const { roughness } = useControls({ roughness: { value: 1, min: 0, max: 1 } })
+  return (
+    <Center top>
+      <mesh castShadow>
+        <sphereGeometry args={[0.75, 64, 64]} />
+        <meshStandardMaterial metalness={1} roughness={roughness} />
+      </mesh>
+    </Center>
+  )
+}
+
+
 
 {
   /*<Head>
