@@ -53,6 +53,17 @@ import { SpotLightHelper } from "three";
 import { BoxHelper, useHelper } from "@react-three/drei";
 import { Underlay, Overlay } from "./Texto"
 
+import { createGlobalStyle } from 'styled-components';
+
+const GlobalStyle = createGlobalStyle`
+  @import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;700&display=swap');
+
+  body {
+    font-family: 'Sora', sans-serif;
+    /* Otras propiedades del cuerpo del texto si es necesario */
+  }
+`;
+
 const MainContainer = styled.div`
   /* background: rgb(73, 72, 77);
   background: radial-gradient(
@@ -90,6 +101,7 @@ export default function Home() {
     fadeStrength: { value: 0.9, min: 0, max: 1, step: 0.1 },
     followCamera: false,
     infiniteGrid: true,
+    
   });
 
   const [hovered, hover] = useState(false);
@@ -107,7 +119,7 @@ export default function Home() {
     setMouseX(event.clientX / window.innerWidth) * 2 - 1);
     setMouseX(-(event.clientY / window.innerHeight) * 2 + 1);*/
 
-  const [texture, setTexture] = useState(null);
+  /*const [texture, setTexture] = useState(null);
 
   useEffect(() => {
     const loader = new TextureLoader();
@@ -123,9 +135,10 @@ export default function Home() {
       texture.offset.set(textureOffset.x, textureOffset.y); // Establece el desplazamiento de la textura
     });
   }, []);
-
+*/
   return (
     <>
+    <GlobalStyle />
     <Underlay />
         <Overlay />
         <MainContainer>
