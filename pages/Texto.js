@@ -130,10 +130,11 @@ display: flex; /* Utilizar flexbox */
   //padding: 10px;
   height: 100%;
   font-size: 15px;
+  font-family: "Sora", sans-serif;
 `;
 const ChildColumn2 = styled.div`
   //background-color: red;
-
+  font-family: "Sora", sans-serif;
   height: 100%;
   white-space: nowrap;
   a {
