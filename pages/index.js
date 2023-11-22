@@ -55,14 +55,7 @@ import { Underlay, Overlay } from "./Texto"
 
 import { createGlobalStyle } from 'styled-components';
 
-const GlobalStyle = createGlobalStyle`
-  @import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;700&display=swap');
 
-  body {
-    font-family: 'Sora', sans-serif;
-    /* Otras propiedades del cuerpo del texto si es necesario */
-  }
-`;
 
 const MainContainer = styled.div`
   /* background: rgb(73, 72, 77);
@@ -138,7 +131,7 @@ export default function Home() {
 */
   return (
     <>
-    <GlobalStyle />
+  
     <Underlay />
         <Overlay />
         <MainContainer>
