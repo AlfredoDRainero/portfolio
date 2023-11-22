@@ -6,7 +6,6 @@ import { useThree } from "@react-three/fiber";
 
 import { useLoader } from "@react-three/fiber";
 
-
 import { memo } from "react";
 import {
   Grid,
@@ -16,7 +15,7 @@ import {
   GizmoViewport,
   AccumulativeShadows,
   RandomizedLight,
-  useGLTF,
+  useGLTF
 } from "@react-three/drei";
 import { useControls } from "leva";
 import { Html } from "@react-three/drei";
@@ -29,14 +28,14 @@ import {
   CubeCamera,
   Environment,
   OrbitControls,
-  PerspectiveCamera,
+  PerspectiveCamera
 } from "@react-three/drei";
 
 import {
   EffectComposer,
   DepthOfField,
   Bloom,
-  ChromaticAberration,
+  ChromaticAberration
 } from "@react-three/postprocessing";
 
 import { BlendFunction } from "postprocessing";
@@ -52,17 +51,6 @@ import { SpotLightHelper } from "three";
 
 import { BoxHelper, useHelper } from "@react-three/drei";
 import { Underlay, Overlay } from "./Texto"
-
-import { createGlobalStyle } from 'styled-components';
-
-const GlobalStyle = createGlobalStyle`
-  @import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;700&display=swap');
-
-  body {
-    font-family: 'Sora', sans-serif;
-    /* Otras propiedades del cuerpo del texto si es necesario */
-  }
-`;
 
 const MainContainer = styled.div`
   /* background: rgb(73, 72, 77);
@@ -88,6 +76,50 @@ const MainContainer = styled.div`
   z-index: -1;
 `;
 
+const Main = styled.div`
+  position: absolute;
+  //z-index: 5;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-template-rows: repeat(1, 1fr);
+  top: 0px;
+  left: 0px;
+  width: 100vw;
+  height: 100vh;
+`;
+
+const Cont3D = styled.div`
+  //overflow: hidden;
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 1;
+  grid-row-end: 2;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  z-index: 2;
+  @media screen and (min-width: 0px) and (max-width: 480px) {
+    //background-color: black;
+  }
+`;
+
+const ContText = styled.div`
+  //overflow: hidden;
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 1;
+  grid-row-end: 2;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  z-index: 3;
+  background-color: yellow;
+  @media screen and (min-width: 0px) and (max-width: 480px) {
+    //background-color: black;
+  }
+  
+`;
+
 export default function Home() {
   const { gridSize, ...gridConfig } = useControls({
     gridSize: [10.5, 10.5],
@@ -101,7 +133,6 @@ export default function Home() {
     fadeStrength: { value: 0.9, min: 0, max: 1, step: 0.1 },
     followCamera: false,
     infiniteGrid: true,
-    
   });
 
   const [hovered, hover] = useState(false);
@@ -138,7 +169,6 @@ export default function Home() {
 */
   return (
     <>
-    <GlobalStyle />
     <Underlay />
         <Overlay />
         <MainContainer>
@@ -169,52 +199,52 @@ export default function Home() {
           </mesh>
         </Center>
 
-        <ambientLight intensity={0.5} color="#ffffff" />
+            <ambientLight intensity={0.5} color="#ffffff" />
 
-        {/*<color args={[0.9, 0.9, 0.9]} attach="background" />*/}
+            {/*<color args={[0.9, 0.9, 0.9]} attach="background" />*/}
 
-        <group position={[0, -0.5, 0]}>
-          <Center top></Center>
+            <group position={[0, -0.5, 0]}>
+              <Center top></Center>
 
-          <Center bottom right position={[-3.7, 0.25, 0]}>
-            <Text3D
-              castShadow
-              curveSegments={32}
-              bevelEnabled
-              bevelSize={0.01}
-              bevelThickness={0.1}
-              height={0.05}
-              lineHeight={0.5}
-              letterSpacing={-0.01}
-              size={0.7}
-              font="/Inter_Bold.json"
-              rotation={new THREE.Euler(-Math.PI / 2, 0, 0)}
-            >
-              Rainero Alfredo
-              <meshStandardMaterial color={hovered2 ? "white" : "white"} />
-            </Text3D>
-          </Center>
+              <Center bottom right position={[-3.7, 0.25, 0]}>
+                <Text3D
+                  castShadow
+                  curveSegments={32}
+                  bevelEnabled
+                  bevelSize={0.01}
+                  bevelThickness={0.1}
+                  height={0.05}
+                  lineHeight={0.5}
+                  letterSpacing={-0.01}
+                  size={0.7}
+                  font="/Inter_Bold.json"
+                  rotation={new THREE.Euler(-Math.PI / 2, 0, 0)}
+                >
+                  Rainero Alfredo
+                  <meshStandardMaterial color={hovered2 ? "white" : "white"} />
+                </Text3D>
+              </Center>
 
-          <Center bottom right position={[0, 0.17, -0.7]}>
-            <Text3D
-              castShadow
-              curveSegments={32}
-              bevelEnabled
-              bevelSize={0.01}
-              bevelThickness={0.1}
-              height={0.001}
-              lineHeight={0.1}
-              letterSpacing={-0.01}
-              size={0.4}
-              font="/Inter_Bold.json"
-              rotation={new THREE.Euler(-Math.PI / 2, 0, 0)}
-            >
-              PORTFOLIO
-              <meshStandardMaterial color={hovered2 ? "white" : "white"} />
-            </Text3D>
-          </Center>
-         
-          {/* <Center bottom right position={[3, 0.1, 0]}>
+              <Center bottom right position={[0, 0.17, -0.7]}>
+                <Text3D
+                  castShadow
+                  curveSegments={32}
+                  bevelEnabled
+                  bevelSize={0.01}
+                  bevelThickness={0.1}
+                  height={0.001}
+                  lineHeight={0.1}
+                  letterSpacing={-0.01}
+                  size={0.4}
+                  font="/Inter_Bold.json"
+                  rotation={new THREE.Euler(-Math.PI / 2, 0, 0)}
+                >
+                  PORTFOLIO
+                  <meshStandardMaterial color={hovered2 ? "white" : "white"} />
+                </Text3D>
+              </Center>
+
+              {/* <Center bottom right position={[3, 0.1, 0]}>
             <Text3D
               curveSegments={30}
               bevelEnabled
@@ -232,20 +262,21 @@ export default function Home() {
             </Text3D>
           </Center>*/}
 
-          <Shadows />
-          <Grid position={[0, -0.01, 0]} args={gridSize} {...gridConfig} />
-        </group>
-        <OrbitControls
-          autoRotate
-          autoRotateSpeed={1}
-          enablePan={false}
-          enableZoom={false}
-          minPolarAngle={Math.PI / 3.1}
-          maxPolarAngle={Math.PI / 3.1}
-        />
-        {/*  <OrbitControls   autoRotate autoRotateSpeed={1} enablePan={false} enableZoom={false} minPolarAngle={Math.PI / 2.1} maxPolarAngle={Math.PI / 2.1}  /> */}
-      </Canvas>
-      </MainContainer>
+              <Shadows />
+              <Grid position={[0, -0.01, 0]} args={gridSize} {...gridConfig} />
+            </group>
+            <OrbitControls
+              autoRotate
+              autoRotateSpeed={1}
+              enablePan={false}
+              enableZoom={false}
+              minPolarAngle={Math.PI / 3.1}
+              maxPolarAngle={Math.PI / 3.1}
+            />
+            {/*  <OrbitControls   autoRotate autoRotateSpeed={1} enablePan={false} enableZoom={false} minPolarAngle={Math.PI / 2.1} maxPolarAngle={Math.PI / 2.1}  /> */}
+          </Canvas>
+        </Cont3D>
+      </Main>
     </>
   );
 }
@@ -261,8 +292,6 @@ const Shadows = memo(() => (
     <RandomizedLight amount={8} radius={4} position={[5, 5, -10]} />
   </AccumulativeShadows>
 ));
-
-
 
 {
   /*<Head>
