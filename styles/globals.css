@@ -5,10 +5,13 @@ html, body, #root, canvas {
   overflow: hidden;
 }
 
-body {
-  background: #303035;
-}
+
 
 * {
   box-sizing: border-box;
+}
+
+canvas {
+  height: 100vh;
+  background: linear-gradient(180deg, #d1d3d6 0%, #f6f6f6 80%);
 }

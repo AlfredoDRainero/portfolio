@@ -51,7 +51,6 @@ import { useTexture } from "@react-three/drei";
 import { SpotLightHelper } from "three";
 
 import { BoxHelper, useHelper } from "@react-three/drei";
-import { Underlay, Overlay } from "./Texto"
 
 const MainContainer = styled.div`
   /* background: rgb(73, 72, 77);
@@ -74,7 +73,6 @@ const MainContainer = styled.div`
   padding: 0;
   overflow: hidden;
   color: black;
-  z-index: -1;
 `;
 
 export default function Home() {
@@ -126,9 +124,6 @@ export default function Home() {
 
   return (
     <>
-    <Underlay />
-        <Overlay />
-        <MainContainer>
       <Canvas
         shadows
         camera={{
@@ -137,7 +132,6 @@ export default function Home() {
           
         }}
       >
-        
         <spotLight
           ref={spot}
           color={[1, 1, 1]}
@@ -162,6 +156,48 @@ export default function Home() {
 
         <group position={[0, -0.5, 0]}>
           <Center top></Center>
+          {/*} <Center top position={[-2, 0, 2]}>
+            <mesh
+              castShadow
+              ref={ref}
+              onPointerOver={(event) => hover(true)}
+              onPointerOut={(event) => hover(false)}
+            >
+              <sphereGeometry args={[0.5, 32, 32]} />
+              <meshStandardMaterial color={hovered ? "white" : "cyan"} />
+            </mesh>
+          </Center>*/}
+
+          {/*          <Center top position={[2.5, 0, 1]}>
+            <mesh
+              castShadow
+              rotation={[0, Math.PI / 4, 0]}
+              ref={ref2}
+              onPointerOver={(event) => hover2(true)}
+              onPointerOut={(event) => hover2(false)}
+            >
+              <boxGeometry args={[0.7, 0.7, 0.7]} />
+              <meshStandardMaterial color={hovered2 ? "white" : "cyan"} />
+            </mesh>
+          </Center>
+      */}
+          {/* <Center top position={[1, 0, -1]}>
+            <mesh
+              castShadow
+              //rotation={[0, Math.PI / 4, 0]}
+              ref={ref2}
+              onPointerOver={(event) => hover2(true)}
+              onPointerOut={(event) => hover2(false)}
+            
+            >
+              <boxGeometry args={[0.7, 0.7, 0.7]} />
+              <meshStandardMaterial
+                color={hovered2 ? "red" : "white"}
+              
+                map={texture}
+              />
+            </mesh>
+  </Center>*/}
 
           <Center bottom right position={[-3.7, 0.25, 0]}>
             <Text3D
@@ -217,7 +253,7 @@ export default function Home() {
               JavaScript
               <meshStandardMaterial color={hovered2 ? "yellow" : "yellow"} />
             </Text3D>
-          </Center>*/}
+</Center>*/}
 
           <Shadows />
           <Grid position={[0, -0.01, 0]} args={gridSize} {...gridConfig} />
@@ -232,7 +268,6 @@ export default function Home() {
         />
         {/*  <OrbitControls   autoRotate autoRotateSpeed={1} enablePan={false} enableZoom={false} minPolarAngle={Math.PI / 2.1} maxPolarAngle={Math.PI / 2.1}  /> */}
       </Canvas>
-      </MainContainer>
     </>
   );
 }
@@ -249,7 +284,19 @@ const Shadows = memo(() => (
   </AccumulativeShadows>
 ));
 
-
+function Sphere() {
+  const { roughness } = useControls({
+    roughness: { value: 1, min: 0, max: 1 },
+  });
+  return (
+    <Center top>
+      <mesh castShadow>
+        <sphereGeometry args={[0.75, 64, 64]} />
+        <meshStandardMaterial metalness={1} roughness={roughness} />
+      </mesh>
+    </Center>
+  );
+}
 
 {
   /*<Head>
