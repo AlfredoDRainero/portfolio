@@ -1,24 +1,100 @@
 
 import styled from 'styled-components';
 
-const Main = styled.div`
+const MainText = styled.div`
  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  padding: 40px;
-  display: inline-flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-  pointer-events: none;
   z-index: 5;
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  top: 0px;
+  left: 0px;
+  width: 100vw;
+  height: 100vh;
+
 `;
+
+
+
+
+const ContLeft = styled.div`
+  //overflow: hidden;
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 1;
+  grid-row-end: 2;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  background-color: blue;
+  @media screen and (min-width: 0px) and (max-width: 480px) {
+    //background-color: black;
+  }
+
+`;
+
+const ContMiddel = styled.div`
+  //overflow: hidden;
+  grid-column-start:2 ;
+  grid-column-end: 3;
+  grid-row-start: 1;
+  grid-row-end: 2;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  @media screen and (min-width: 0px) and (max-width: 480px) {
+    //background-color: black;
+  }
+
+`;
+
+const ContRight = styled.div`
+  //overflow: hidden;
+  grid-column-start: 3;
+  grid-column-end: 4;
+  grid-row-start: 1;
+  grid-row-end: 2;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  background-color: red;
+  @media screen and (min-width: 0px) and (max-width: 480px) {
+    //background-color: black;
+  }
+
+`;
+
+
+
 
 export function Underlay() {
     return (
-      <div
+
+<MainText>
+  <ContLeft></ContLeft>
+  <ContMiddel></ContMiddel>
+  <ContRight></ContRight>
+
+
+
+</MainText>
+
+    
+    )
+  }
+  
+  export function Overlay() {
+    return (
+      <div style={{ position: "absolute", bottom: 40, right: 40 }}>
+        <p style={{ flex: "1 1 0%", fontSize: 12, lineHeight: "1em", textAlign: "right", color: "black" }}>
+          <a href="http://pmnd.rs/">pmnd.rs</a> <a href="https://github.com/pmndrs">git</a> <a href="https://codesandbox.io/s/zxpv7">csb</a>
+        </p>
+      </div>
+    )
+  }
+
+  /*  <div
         style={{
           position: "absolute",
           top: 0,
@@ -127,17 +203,5 @@ export function Underlay() {
           <div style={{ width: 10 }} />
           <p className="full" style={{ flex: "1 1 0%", fontSize: 12, lineHeight: "1em", textAlign: "right", color: "black" }}></p>
         </div>
-      </div>
-    )
-  }
-  
-  export function Overlay() {
-    return (
-      <div style={{ position: "absolute", bottom: 40, right: 40 }}>
-        <p style={{ flex: "1 1 0%", fontSize: 12, lineHeight: "1em", textAlign: "right", color: "black" }}>
-          <a href="http://pmnd.rs/">pmnd.rs</a> <a href="https://github.com/pmndrs">git</a> <a href="https://codesandbox.io/s/zxpv7">csb</a>
-        </p>
-      </div>
-    )
-  }
+          </div>*/
   
