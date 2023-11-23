@@ -1,4 +1,5 @@
-import styled from "styled-components";
+import styled, { keyframes } from 'styled-components';
+
 
 const Main = styled.div`
   position: absolute;
@@ -30,7 +31,7 @@ const ColumnCenter = styled.div`
   align-items: center;
   font-size: 24px;
   flex: 1; /* Ocupa todo el espacio disponible */
-  opacity: 0.5;
+  //opacity: 0.5;
 `;
 
 const ColumnRight = styled.div`
@@ -40,7 +41,7 @@ const ColumnRight = styled.div`
   align-items: center;
   font-size: 24px;
   flex: 1; /* Ocupa todo el espacio disponible */
-  opacity: 0.5;
+  //opacity: 0.5;
   grid-template-columns: 2fr 0.2fr; /* Dos columnas de igual tamaño */
   gap: 10px; /* Espacio entre las columnas */
 `;
@@ -63,10 +64,13 @@ const Row1 = styled.div`
     margin-left: -0.07em;
     margin-top: -0.2em;
   }
+  //opacity: 0.5;
 `;
 
 const Row2 = styled.div`
+
   background-color: ${({ color }) => color || "transparent"};
+
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
@@ -123,14 +127,17 @@ const Row4 = styled.div`
   font-weight: normal;
 `;
 const ChildColumn1 = styled.div`
-padding-left: 40px;
-display: flex; /* Utilizar flexbox */
-   align-items: start; /* Centrar verticalmente los hijos */
- // background-color: lightgray;
+  padding-right: 40px;
+
+  display: grid; /* Utilizar flexbox */
+  align-items: start; /* Centrar verticalmente los hijos */
+  // background-color: lightgray;
   //padding: 10px;
   height: 100%;
-  font-size: 15px;
+  font-size: 20px;
+  color: gray;
   font-family: "Sora", sans-serif;
+  border-right: 1px solid black;
 `;
 const ChildColumn2 = styled.div`
   //background-color: red;
@@ -149,7 +156,9 @@ export function Underlay() {
         <Row1>
           <a style={{ fontWeight: "bold", marginRight: "5px" }}>Rainero </a>
           <a>Alfredo</a>
+        
         </Row1>
+        
         <Row2>
           <a>D </a>
         </Row2>
@@ -161,25 +170,26 @@ export function Underlay() {
         <Row4>FROM 1997</Row4>
       </ColumnCenter>
       <ColumnRight>
-        <ChildColumn1 >
-          My current focus it's on implementation of React and its ecosystem, as
-          well as React Native, JavaScript, Electron.js, and Node.js for the
-          development of web, mobile, and desktop applications. Additionally, I
-          have worked with various libraries such as Three.js,
-          Styled-components, and Gsap, and have experience with multiple
-          databases, including MySql, Sqlite3, Nedb, and dBase.
-          <br/>
-          Throughout more than a decade,I've worked with many different languages and platforms,
-          ranging from Java (including Java for Android), Visual Basic, Delphi,
-          Turbo C++, Builder C++, C++, to GLSL, ASM, HTML, CSS, Php, and
-          Calypso. Along this journey, my involvement in challenging projects
-          has significantly contributed to my professional growth. 
-          <br/>
-          My projects
-          have been diverse, from creating code snippets for satellite image
-          capture to developing games, study programs, statistical analysis, as
-          well as creating mobile applications and websites.
+        <ChildColumn1>
+          Currently, I'm focused on working with React and its ecosystem, along
+          with React Native, JavaScript, Electron.js, and Node.js for the
+          development of web, mobile, and desktop applications
+
+          <ParentContainer>
+        <CircularImage>
+            <Image
+              src="/RETRATO.JPG"
+              alt="Portrait"
+              layout="fill"
+              objectFit="cover"
+            />
+          </CircularImage>
+          <CircularImage2 />
+       
+    
+          </ParentContainer>
         </ChildColumn1>
+
         <ChildColumn2>
           <a style={{ transform: "rotate(90deg)", display: "block" }}>
             About me •{" "}
@@ -190,10 +200,93 @@ export function Underlay() {
   );
 }
 
+import Image from "next/image";
+
+
+const ParentContainer = styled.div`
+
+   align-self: center;
+   justify-self: center;
+  position: relative;
+  width: 250px; /* Ajusta el tamaño del círculo */
+  height: 250px; /* Ajusta el tamaño del círculo */
+  top:-100px;
+`;
+
+const CircularImage = styled.div`
+ filter: grayscale(100%);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%; /* Hace que el componente sea circular */
+  overflow: hidden; /* Oculta cualquier contenido fuera del círculo */
+  border: 10px solid lightgray; /* Agrega un borde rojo */
+  box-sizing: border-box; /* Incluye el borde en el tamaño del componente */
+  background-color: black;
+  transition: filter 0.3s; 
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ajusta la imagen para que llene el círculo */
+  }
+  
+  &:hover {
+    filter: grayscale(0%);
+    
+  }
+`;
+
+const rotate = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+`;
+const CircularImage2 = styled.div`
+  position: absolute;
+  top: -2px; /* Ajusta la posición de este círculo (puedes ajustarlo según lo necesites) */
+  left: -2px; /* Ajusta la posición de este círculo (puedes ajustarlo según lo necesites) */
+  width: 254px; /* Ajusta el tamaño del segundo círculo */
+  height: 254px; /* Ajusta el tamaño del segundo círculo */
+  border-radius: 50%; /* Hace que el componente sea circular */
+  overflow: hidden; /* Oculta cualquier contenido fuera del círculo */
+  //border: 10px solid black; /* Agrega un borde rojo */
+  //box-sizing: border-box; /* Incluye el borde en el tamaño del componente */
+  background: conic-gradient(from 0deg at 50% 50%, transparent 90%, black 90%);
+  //opacity: 0.5;
+  z-index: -1;
+  animation: ${rotate} 10s linear infinite;
+`;
+
+
+
+
+
+
 {
   /* <p style={{ fontWeight: "bold", backgroundColor: "blue" }}>Alfredo</p>
 <p>Rainero</p>*/
 }
+
+/*
+<br/>
+          Throughout more than a decade,I've worked with many different languages and platforms,
+          ranging from Java (including Java for Android), Visual Basic, Delphi,
+          Turbo C++, Builder C++, C++, to GLSL, ASM, HTML, CSS, Php, and
+          Calypso. Along this journey, my involvement in challenging projects
+          has significantly contributed to my professional growth. 
+          <br/>
+          My projects
+          have been diverse, from creating code snippets for satellite image
+          capture to developing games, study programs, statistical analysis, as
+          well as creating mobile applications and websites.
+          
+          */
 
 export function Overlay() {
   return (
